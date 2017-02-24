@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import todoApp from './reducers';
+import App from './components/App';
+
 import Clock from './Clock';
 import ListComponent from './ListComponent';
 import NameForm from './NameForm';
 import './index.css';
+
+let store = createStore(todoApp);
 
 function Welcome(props) {
   return (<h1><i>Welcome</i> my friend {props.name}</h1>);
@@ -39,6 +46,9 @@ ReactDOM.render(
   {getGreeting(user)}
   <ListComponent />
   <NameForm />
+  <Provider store={store}>
+    <App />
+  </Provider>
   </div>,
   document.getElementById('root')
 );
